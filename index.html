@@ -4,23 +4,23 @@
   <meta charset="utf-8">
   <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
   <!-- Replace the content tag with appropriate information -->
-  <meta name="description" content="DESCRIPTION META TAG">
-  <meta property="og:title" content="SOCIAL MEDIA TITLE TAG"/>
-  <meta property="og:description" content="SOCIAL MEDIA DESCRIPTION TAG TAG"/>
-  <meta property="og:url" content="URL OF THE WEBSITE"/>
+  <meta name="description" content="ECoFLaP">
+  <meta property="og:title" content="ECoFLaP (2023)"/>
+  <meta property="og:description" content="ECoFLaP: An Efficient Coarse-to-Fine Model Pruning Approach with Zeroth-Order Gradient"/>
+  <meta property="og:url" content="ecoflap.github.io"/>
   <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X630-->
-  <meta property="og:image" content="static/image/your_banner_image.png" />
+  <meta property="og:image" content="static/images/unc.png" />
   <meta property="og:image:width" content="1200"/>
   <meta property="og:image:height" content="630"/>
 
 
-  <meta name="twitter:title" content="TWITTER BANNER TITLE META TAG">
-  <meta name="twitter:description" content="TWITTER BANNER DESCRIPTION META TAG">
+  <meta name="twitter:title" content="ECoFLaP (2023)">
+  <meta name="twitter:description" content="ECoFLaP: An Efficient Coarse-to-Fine Model Pruning Approach with Zeroth-Order Gradient">
   <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X600-->
-  <meta name="twitter:image" content="static/images/your_twitter_banner_image.png">
+  <meta name="twitter:image" content="static/images/unc.png">
   <meta name="twitter:card" content="summary_large_image">
   <!-- Keywords for your paper to be indexed by-->
-  <meta name="keywords" content="KEYWORDS SHOULD BE PLACED HERE">
+  <meta name="keywords" content="Model Pruning, Multimodal Learning, Unimodal Learning">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
@@ -105,7 +105,7 @@
                 </span>
 
                 <!-- ArXiv abstract Link -->
-                <span class="link-block">
+                <!-- <span class="link-block">
                   <a href="https://arxiv.org/abs/<ARXIV PAPER ID>" target="_blank"
                   class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
@@ -113,7 +113,7 @@
                   </span>
                   <span>arXiv</span>
                 </a>
-              </span>
+              </span> -->
             </div>
           </div>
         </div>
@@ -150,7 +150,22 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            Large Vision-Language Models (LVLMs) can understand the world comprehensively by integrating rich information from different modalities, achieving remarkable performance improvements on various multimodal downstream tasks. However, deploying LVLMs is often problematic due to their massive computational/energy costs and carbon consumption, making it infeasible to adopt conventional iterative global pruning, which is costly due to computing the Hessian matrix of the entire large model for sparsification. Alternatively, several studies have recently proposed layer-wise pruning approaches to avoid the expensive computation of global pruning and efficiently compress model weights according to their importance within a layer. However, these methods often suffer from suboptimal model compression due to their lack of a global perspective. To address this limitation in recent efficient pruning methods for large models, we propose Efficient Coarse-to-Fine Layer-Wise Pruning (ECoFLaP), a two-stage coarse-to-fine weight pruning approach for LVLMs. We first determine the sparsity ratios of different layers or blocks by leveraging the global importance score, which is efficiently computed based on the zeroth-order approximation of the global model gradients. Then, the multimodal model performs layer-wise unstructured weight pruning. We validate our proposed method across various multi-modal and single-modal models and datasets, demonstrating significant performance improvements over prevalent pruning techniques in the high-sparsity regime.
+            Large Vision-Language Models (LVLMs) can understand the world comprehensively by integrating rich 
+            information from different modalities, achieving remarkable performance improvements on various 
+            multimodal downstream tasks. However, deploying LVLMs is often problematic due to their massive 
+            computational/energy costs and carbon consumption. Such issues make it infeasible to adopt conventional 
+            iterative global pruning, which is costly due to computing the Hessian matrix of the entire large model 
+            for sparsification. Alternatively, several studies have recently proposed layer-wise pruning approaches 
+            to avoid the expensive computation of global pruning and efficiently compress model weights according to 
+            their importance within a layer. However, these methods often suffer from suboptimal model compression 
+            due to their lack of a global perspective. To address this limitation in recent efficient pruning methods 
+            for large models, we propose Efficient Coarse-to-Fine Layer-Wise Pruning (ECoFLaP), a two-stage 
+            coarse-to-fine weight pruning approach for LVLMs. We first determine the sparsity ratios of different 
+            layers or blocks by leveraging the global importance score, which is efficiently computed based on the 
+            zeroth-order approximation of the global model gradients. Then, the multimodal model performs local 
+            layer-wise unstructured weight pruning based on globally-informed sparsity ratios. We validate our 
+            proposed method across various multimodal and unimodal models and datasets, demonstrating significant 
+            performance improvements over prevalent pruning techniques in the high-sparsity regime.
           </p>
         </div>
       </div>
@@ -332,7 +347,15 @@
   <section class="section" id="BibTeX">
     <div class="container is-max-desktop content">
       <h2 class="title">BibTeX</h2>
-      <pre><code>BibTex Code Here</code></pre>
+      <pre><code>
+        @inproceedings{Sung2023ECoFLaP,
+          author = {Yi-Lin Sung, Jaehong Yoon, Mohit Bansal},
+          title = {ECoFLaP: Efficient Coarse-to-Fine Layer-Wise Pruning for Vision-Language Models},
+          booktitle = {arXiv},
+          year = {2023},
+        }
+      
+      </code></pre>
     </div>
 </section>
 <!--End BibTex citation -->
