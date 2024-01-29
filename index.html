@@ -8,7 +8,7 @@
   <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
   <!-- Replace the content tag with appropriate information -->
   <meta name="description" content="ECoFLaP">
-  <meta property="og:title" content="ECoFLaP (2023)"/>
+  <meta property="og:title" content="ECoFLaP (ICLR 2024)"/>
   <meta property="og:description" content="ECoFLaP: An Efficient Coarse-to-Fine Model Pruning Approach with Zeroth-Order Gradient"/>
   <meta property="og:url" content="ecoflap.github.io"/>
   <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X630-->
@@ -17,7 +17,7 @@
   <meta property="og:image:height" content="630"/>
 
 
-  <meta name="twitter:title" content="ECoFLaP (2023)">
+  <meta name="twitter:title" content="ECoFLaP (ICLR 2024)">
   <meta name="twitter:description" content="ECoFLaP: An Efficient Coarse-to-Fine Model Pruning Approach with Zeroth-Order Gradient">
   <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X600-->
   <meta name="twitter:image" content="static/images/unc.png">
@@ -69,6 +69,11 @@
 
                   <div class="is-size-5 publication-authors">
                     <span class="author-block">University of North Carolina at Chapel Hill<br>Computer Science</span>
+                    <!-- <span class="eql-cntrb"><small><br><sup>*</sup>Indicates Equal Contribution</small></span> -->
+                  </div>
+
+                  <div class="is-size-5 publication-authors">
+                    <span class="author-block">ICLR 2024</span>
                     <!-- <span class="eql-cntrb"><small><br><sup>*</sup>Indicates Equal Contribution</small></span> -->
                   </div>
 
@@ -153,22 +158,21 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            Large Vision-Language Models (LVLMs) can understand the world comprehensively by integrating rich 
-            information from different modalities, achieving remarkable performance improvements on various 
-            multimodal downstream tasks. However, deploying LVLMs is often problematic due to their massive 
-            computational/energy costs and carbon consumption. Such issues make it infeasible to adopt conventional 
-            iterative global pruning, which is costly due to computing the Hessian matrix of the entire large model 
-            for sparsification. Alternatively, several studies have recently proposed layer-wise pruning approaches 
-            to avoid the expensive computation of global pruning and efficiently compress model weights according to 
-            their importance within a layer. However, these methods often suffer from suboptimal model compression 
-            due to their lack of a global perspective. To address this limitation in recent efficient pruning methods 
-            for large models, we propose Efficient Coarse-to-Fine Layer-Wise Pruning (ECoFLaP), a two-stage 
-            coarse-to-fine weight pruning approach for LVLMs. We first determine the sparsity ratios of different 
-            layers or blocks by leveraging the global importance score, which is efficiently computed based on the 
-            zeroth-order approximation of the global model gradients. Then, the multimodal model performs local 
-            layer-wise unstructured weight pruning based on globally-informed sparsity ratios. We validate our 
-            proposed method across various multimodal and unimodal models and datasets, demonstrating significant 
-            performance improvements over prevalent pruning techniques in the high-sparsity regime.
+            Large Vision-Language Models (LVLMs) can understand the world comprehensively by integrating 
+            rich information from different modalities, achieving remarkable advancements on various multimodal 
+            downstream tasks. However, deploying LVLMs is often problematic due to their massive computational/energy 
+            costs and carbon consumption. Such issues make it infeasible to adopt conventional iterative global pruning, 
+            which is costly due to computing the Hessian matrix of the entire large model for sparsification. 
+            Alternatively, several studies have recently proposed layer-wise pruning approaches to avoid the expensive 
+            computation of global pruning and efficiently compress model weights according to their importance within 
+            a layer. However, they often suffer from suboptimal model compression due to their lack of a global perspective. 
+            To address this limitation in recent efficient pruning methods for large models, we propose Efficient 
+            Coarse-to-Fine LayerWise Pruning (ECoFLaP), a two-stage coarse-to-fine weight pruning approach for LVLMs. 
+            We first determine the sparsity ratios of different layers or blocks by leveraging the global importance score, 
+            which is efficiently computed based on the zeroth-order approximation of the global model gradients. 
+            Then, the model performs local layer-wise unstructured weight pruning based on globally-informed sparsity 
+            ratios. We validate our proposed method across various multimodal and unimodal models and datasets, 
+            demonstrating significant performance improvements over prevalent pruning techniques in the high-sparsity regime.
           </p>
         </div>
       </div>
@@ -259,6 +263,23 @@
           <div class="item">
             <img src="static/images/method.png" alt="MY ALT TEXT"/>
           </div>
+          <div class="content has-text-justified">
+            <p>
+              We demonstrate the design difference of ECoFLaP compared to global and layer-wise pruning approaches. 
+              ECoFLaP obtains an adaptive sparsity ratio per layer in a single step based on a "global importance score" (Coarse) 
+              and then removes parameters that are less critical (to the model's performance), in a layer-wise manner (Fine).
+            </p>
+          </div>
+
+          <div class="item">
+            <img src="static/images/zeroth-order.png" alt="MY ALT TEXT" width="700" height="800"/>
+          </div>
+          <div class="content has-text-justified">
+            <p>
+              Our approach utilizes zeroth-order gradient to reduce the memory requirement caused by backpropagation 
+              when computing the global information.
+            </p>
+          </div>
           
           <!-- <div class="publication-video">
             <iframe src="https://www.youtube.com/embed/JkaxUblCGz0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
@@ -281,9 +302,35 @@
           <div class="item">
             <img src="static/images/result1.png" alt="MY ALT TEXT"/>
           </div>
+          <div class="content has-text-justified">
+            <p>
+              ECoFLaP outperforms SoTA layer-wise pruning baselines since our ECoFLaP is able to exploit the
+              global information. Note that our zeroth-order ECoFLaP uses on-par memory budgets compared
+              to layer-wise pruning methods, Wanda and SparseGPT, by avoiding expensive backpropagation
+              computation.
+            </p>
+          </div>
 
           <div class="item">
             <img src="static/images/result2.png" alt="MY ALT TEXT"/>
+          </div>
+          <div class="content has-text-justified">
+            <p>
+              ECoFLaP can be applied to both multimodal and unimodal architectures. We also show that ECoFLaP demonstrates larger 
+              performance improvements over baselines in the high-sparsity regime. 
+            </p>
+          </div>
+
+          <div class="item">
+            <img src="static/images/result3.png" alt="MY ALT TEXT"/>
+          </div>
+          <div class="content has-text-justified">
+            <p>
+              ECoFLaP also performs better than baselines on CLIP models over 11 tasks, 
+              and the approach can worked well with SoTA layer-wise pruning approaches, Wanda or SparseGPT. 
+              The result shows that the strategy of using local scores leads to a decrease in performance compared 
+              to leveraging a uniform sparsity ratio, and this justifies our use of global information.
+            </p>
           </div>
           
           <!-- <div class="publication-video">
@@ -351,11 +398,11 @@
     <div class="container is-max-desktop content">
       <h2 class="title">BibTeX</h2>
       <pre><code>
-        @inproceedings{Sung2023ECoFLaP,
+        @inproceedings{Sung2024ECoFLaP,
           author = {Yi-Lin Sung, Jaehong Yoon, Mohit Bansal},
           title = {ECoFLaP: Efficient Coarse-to-Fine Layer-Wise Pruning for Vision-Language Models},
-          booktitle = {arXiv:2310.02998},
-          year = {2023},
+          booktitle = {International Conference on Learning Representations (ICLR)},
+          year = {2024},
         }
       
       </code></pre>
